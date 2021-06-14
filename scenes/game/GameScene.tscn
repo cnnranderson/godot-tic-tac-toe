@@ -82,7 +82,7 @@ __meta__ = {
 }
 
 [node name="O" type="HBoxContainer" parent="Hud/WinCounts"]
-margin_right = 76.0
+margin_right = 160.0
 margin_bottom = 28.0
 
 [node name="OLabel" type="Label" parent="Hud/WinCounts/O"]
@@ -103,7 +103,7 @@ text = "0"
 
 [node name="X" type="HBoxContainer" parent="Hud/WinCounts"]
 margin_top = 32.0
-margin_right = 76.0
+margin_right = 160.0
 margin_bottom = 60.0
 
 [node name="XLabel" type="Label" parent="Hud/WinCounts/X"]
@@ -118,6 +118,20 @@ margin_right = 76.0
 margin_bottom = 28.0
 custom_colors/font_color = Color( 0.317647, 0.341176, 0.317647, 1 )
 text = "0"
+
+[node name="DrawLabel" type="Label" parent="Hud/WinCounts"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 64.0
+margin_right = 160.0
+margin_bottom = 92.0
+theme = ExtResource( 4 )
+custom_colors/font_color = Color( 0.317647, 0.341176, 0.317647, 1 )
+text = "Press R to reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Hud"]
 
 [node name="Timers" type="CanvasLayer" parent="."]
 

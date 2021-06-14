@@ -1,6 +1,7 @@
 extends Node2D
 
 var grid = []
+var tiles_placed = 0
 
 func _ready():
 	_init_grid()
@@ -8,6 +9,7 @@ func _ready():
 	Events.connect("game_reset", self, "_Event_game_reset")
 
 func _init_grid():
+	tiles_placed = 0
 	grid = []
 	for i in range(3):
 		grid.append([])
@@ -45,11 +47,15 @@ func _check_win(last_tile, last_coord):
 		elif i == 2:
 			Events.emit_signal("game_won", last_tile)
 			return
+	
+	if tiles_placed == 9:
+		Events.emit_signal("game_draw")
 
 func _Event_game_reset():
 	_init_grid()
 
 func _Event_tile_placed(tile, coordinate):
+	tiles_placed += 1
 	grid[coordinate.y][coordinate.x] = tile
 	_check_win(tile, coordinate)
 	GameState.current_player = "x" if tile == "o" else "o"

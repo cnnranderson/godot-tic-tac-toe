@@ -9,6 +9,7 @@ connecting signal subscribers.
 """
 
 # Core Game signals
+signal game_draw
 signal game_reset
 signal game_won(winner)
 signal tile_placed(tile, coordinate)

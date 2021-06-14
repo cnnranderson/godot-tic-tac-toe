@@ -14,6 +14,7 @@ func _ready():
 
 func _init_tile():
 	$Sprite.visible = false
+	$Shadow.visible = false
 	self.modulate.a = 1.0
 	tile = ""
 	resetting = false
@@ -26,10 +27,19 @@ func set_tile(tile_type):
 	# Let everyone know we placed a tile
 	Events.emit_signal("tile_placed", tile_type, coord)
 	$Sprite.visible = true
+	$Shadow.visible = true
 	tile = tile_type
+	
+	$Tween.interpolate_property($Sprite, "position:y", -15, 0, 0.5, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	$Tween.interpolate_property($Shadow, "modulate:a", 0, 1.0, 1, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	$Tween.start()
 	match tile:
-		"x": $Sprite.texture = x_sprite
-		"o": $Sprite.texture = o_sprite
+		"x": 
+			$Sprite.texture = x_sprite
+			$Shadow.texture = x_sprite
+		"o": 
+			$Sprite.texture = o_sprite
+			$Shadow.texture = o_sprite
 		_: $Sprite.visible = false
 
 func _on_Tile_input_event(viewport, event, shape_idx):
