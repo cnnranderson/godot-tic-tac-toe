@@ -23,7 +23,7 @@ func _init_tile():
 
 func set_tile(tile_type):
 	# Short circuit if tile is already taken or grid is locked
-	if tile != "" or !GameState.can_move:
+	if tile != "" or !GameState.can_move or resetting:
 		return
 	
 	# We placed a tile; let the world know
