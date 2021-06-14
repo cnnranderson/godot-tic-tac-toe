@@ -7,12 +7,12 @@ export(Vector2) var coord = Vector2()
 export(String) var tile = ""
 
 func _ready():
-	$Sprite.visible = false
+	_init_tile()
+	Events.connect("game_reset", self, "_Event_game_reset")
 
-func _on_Tile_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == 1 and event.pressed == true:
-			set_tile(GameState.current_player)
+func _init_tile():
+	$Sprite.visible = false
+	tile = ""
 
 func set_tile(tile_type):
 	# Short circuit if tile is already taken
@@ -27,3 +27,11 @@ func set_tile(tile_type):
 		"x": $Sprite.texture = x_sprite
 		"o": $Sprite.texture = o_sprite
 		_: $Sprite.visible = false
+
+func _on_Tile_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed == true:
+			set_tile(GameState.current_player)
+
+func _Event_game_reset():
+	_init_tile()
