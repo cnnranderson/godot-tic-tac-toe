@@ -13,4 +13,3 @@ func _Event_game_won(winner):
 
 func _Event_game_reset():
 	can_move = true
-

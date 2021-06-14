@@ -9,10 +9,14 @@ func _tween_style(stylebox, property, start, end):
 
 func _on_Button_mouse_entered():
 	_tween_style(get_stylebox("normal", "Button"), "border_width_left", 2, 8)
+	_tween_style(get_stylebox("normal", "Button"), "border_width_right", 2, 8)
 	_tween_style(get_stylebox("hover", "Button"), "border_width_left", 2, 8)
+	_tween_style(get_stylebox("hover", "Button"), "border_width_right", 2, 8)
 	$Tween.start()
 
 func _on_Button_mouse_exited():
 	_tween_style(get_stylebox("normal", "Button"), "border_width_left", 8, 2)
+	_tween_style(get_stylebox("normal", "Button"), "border_width_right", 8, 2)
 	_tween_style(get_stylebox("hover", "Button"), "border_width_left", 8, 2)
+	_tween_style(get_stylebox("hover", "Button"), "border_width_right", 8, 2)
 	$Tween.start()

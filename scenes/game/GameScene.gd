@@ -16,3 +16,6 @@ func _Event_game_won(winner):
 	$Hud/WinLabel.visible = true
 	$Hud/WinnerLabel.text = "%s WINS" % winner.capitalize()
 	$Hud/WinnerLabel.visible = true
+	match winner:
+		"o": $Hud/WinCounts/O/Wins.text = str(int($Hud/WinCounts/O/Wins.text) + 1)
+		"x": $Hud/WinCounts/X/Wins.text = str(int($Hud/WinCounts/X/Wins.text) + 1)

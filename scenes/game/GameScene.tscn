@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/grid/GameGrid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/game/GameScene.gd" type="Script" id=2]
 [ext_resource path="res://fonts/BitPotionExt.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://ui/base_theme.tres" type="Theme" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -58,6 +59,54 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WinCounts" type="VBoxContainer" parent="Hud"]
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_bottom = 32.0
+theme = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="O" type="HBoxContainer" parent="Hud/WinCounts"]
+margin_right = 76.0
+margin_bottom = 28.0
+
+[node name="OLabel" type="Label" parent="Hud/WinCounts/O"]
+margin_right = 62.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0.317647, 0.341176, 0.317647, 1 )
+text = "O Wins:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wins" type="Label" parent="Hud/WinCounts/O"]
+margin_left = 66.0
+margin_right = 76.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0.317647, 0.341176, 0.317647, 1 )
+text = "0"
+
+[node name="X" type="HBoxContainer" parent="Hud/WinCounts"]
+margin_top = 32.0
+margin_right = 76.0
+margin_bottom = 60.0
+
+[node name="XLabel" type="Label" parent="Hud/WinCounts/X"]
+margin_right = 62.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0.317647, 0.341176, 0.317647, 1 )
+text = "X Wins:"
+
+[node name="Wins" type="Label" parent="Hud/WinCounts/X"]
+margin_left = 66.0
+margin_right = 76.0
+margin_bottom = 28.0
+custom_colors/font_color = Color( 0.317647, 0.341176, 0.317647, 1 )
+text = "0"
 
 [node name="Timers" type="CanvasLayer" parent="."]
 

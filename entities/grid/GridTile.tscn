@@ -15,4 +15,12 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timers" type="CanvasLayer" parent="."]
+
+[node name="ResetTimer" type="Timer" parent="Timers"]
+one_shot = true
+
 [connection signal="input_event" from="." to="." method="_on_Tile_input_event"]
+[connection signal="timeout" from="Timers/ResetTimer" to="." method="_on_ResetTimer_timeout"]
