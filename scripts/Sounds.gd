@@ -2,13 +2,14 @@ extends Node
 
 enum SoundType {SFX, MUSIC}
 
-func play_sound(type, sound_file: String):
+func play_sound(type, sound_file: String, pitch = 1.0):
 	# Check for supported sound type
 	assert(type in SoundType.values())
 	
 	# Setup the audio player
 	var sound = AudioStreamPlayer.new()
 	sound.stream = load(sound_file)
+	sound.pitch_scale = pitch
 	sound.connect("finished", sound, "queue_free")
 	_set_volume(sound, type)
 	add_child(sound)

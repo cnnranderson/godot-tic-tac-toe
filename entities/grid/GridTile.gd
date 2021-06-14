@@ -40,7 +40,7 @@ func set_tile(tile_type):
 	$Tween.start()
 	
 	# Emit a sound of being placed
-	Sounds.play_sound(Sounds.SoundType.SFX, PLACE_TILE_SOUND)
+	Sounds.play_sound(Sounds.SoundType.SFX, PLACE_TILE_SOUND, 1.4 if tile_type == "x" else 1.0)
 
 func _on_Tile_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:

@@ -11,6 +11,7 @@ func _process(_delta):
 
 func _show_reset_prompt():
 	$Hud/WinCounts/DrawLabel.visible = true
+	$Hud/WinCounts/DrawLabel.modulate.a = 0.0
 	$Hud/Tween.interpolate_property($Hud/WinCounts/DrawLabel, "modulate:a", 0, 1.0, 2, Tween.TRANS_LINEAR, Tween.EASE_IN, 0.5)
 	$Hud/Tween.start()
 
