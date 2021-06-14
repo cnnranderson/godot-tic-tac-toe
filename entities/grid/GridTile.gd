@@ -8,6 +8,8 @@ export(String) var tile = ""
 
 var resetting = false
 
+const PLACE_TILE_SOUND = "res://sounds/place_tile.wav"
+
 func _ready():
 	_init_tile()
 	Events.connect("game_reset", self, "_Event_game_reset")
@@ -20,27 +22,25 @@ func _init_tile():
 	resetting = false
 
 func set_tile(tile_type):
-	# Short circuit if tile is already taken
+	# Short circuit if tile is already taken or grid is locked
 	if tile != "" or !GameState.can_move:
 		return
 	
-	# Let everyone know we placed a tile
+	# We placed a tile; let the world know
 	Events.emit_signal("tile_placed", tile_type, coord)
+	tile = tile_type
 	$Sprite.visible = true
 	$Shadow.visible = true
-	tile = tile_type
+	$Sprite.texture = x_sprite if tile == "x" else o_sprite
+	$Shadow.texture = x_sprite if tile == "x" else o_sprite
 	
+	# Animate the tile being placed
 	$Tween.interpolate_property($Sprite, "position:y", -15, 0, 0.5, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	$Tween.interpolate_property($Shadow, "modulate:a", 0, 1.0, 1, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	$Tween.start()
-	match tile:
-		"x": 
-			$Sprite.texture = x_sprite
-			$Shadow.texture = x_sprite
-		"o": 
-			$Sprite.texture = o_sprite
-			$Shadow.texture = o_sprite
-		_: $Sprite.visible = false
+	
+	# Emit a sound of being placed
+	Sounds.play_sound(Sounds.SoundType.SFX, PLACE_TILE_SOUND)
 
 func _on_Tile_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
