@@ -1,0 +1,5 @@
+Green - 87a330
+Orange - dd6031
+Gray - 515751
+White - f5f9e9
+Blue - 58a4b0
